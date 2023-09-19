@@ -105,6 +105,8 @@ class MainActivity : AppCompatActivity() {
     lateinit var number45EditText: EditText
     lateinit var number46Text: TextView
     lateinit var number46EditText: EditText
+    lateinit var orderItens: ArrayList<Item>
+    lateinit var newItemBtn: Button
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -191,16 +193,58 @@ class MainActivity : AppCompatActivity() {
         number45EditText = findViewById<EditText>(R.id.main_ed_number_45)
         number46Text = findViewById<TextView>(R.id.main_tv_number_46)
         number46EditText = findViewById<EditText>(R.id.main_ed_number_46)
+        orderItens = arrayListOf<Item>()
+        newItemBtn = findViewById<Button>(R.id.main_btn_new_item)
 
         exportButton.setOnClickListener {
             requestWriteExternalPermission()
-            number20EditText.text.clear()
-            number40EditText.text.clear()
+        }
+
+        newItemBtn.setOnClickListener {
+
+            orderItens.add(
+                Item(
+                    refEditText.text.toString(),
+                    pairEditText.text.toString(),
+                    colorEditText.text.toString(),
+                    number20EditText.text.toString(),
+                    number21EditText.text.toString(),
+                    number22EditText.text.toString(),
+                    number23EditText.text.toString(),
+                    number24EditText.text.toString(),
+                    number25EditText.text.toString(),
+                    number26EditText.text.toString(),
+                    number27EditText.text.toString(),
+                    number28EditText.text.toString(),
+                    number29EditText.text.toString(),
+                    number30EditText.text.toString(),
+                    number31EditText.text.toString(),
+                    number32EditText.text.toString(),
+                    number33EditText.text.toString(),
+                    number34EditText.text.toString(),
+                    number35EditText.text.toString(),
+                    number36EditText.text.toString(),
+                    number37EditText.text.toString(),
+                    number38EditText.text.toString(),
+                    number39EditText.text.toString(),
+                    number40EditText.text.toString(),
+                    number41EditText.text.toString(),
+                    number42EditText.text.toString(),
+                    number43EditText.text.toString(),
+                    number44EditText.text.toString(),
+                    number45EditText.text.toString(),
+                    number46EditText.text.toString()
+                )
+            )
+
+            Toast.makeText(this, "Item adicionado com sucesso", Toast.LENGTH_LONG).show()
+
+            clear()
         }
     }
 
-    private fun exportToPDF() {
 
+    private fun exportToPDF() {
         val order = orderText.text.toString().trim()
         val orderTyped = orderEditText.text.toString().trim()
         val name = nameText.text.toString().trim()
@@ -222,89 +266,35 @@ class MainActivity : AppCompatActivity() {
         val comments = commentsText.text.toString().trim()
         val commentsTyped = commentsEditText.text.toString().trim()
         val ref = refText.text.toString().trim()
-        var refTyped = refEditText.text.toString().trim()
         val pair = pairText.text.toString().trim()
-        var pairTyped = pairEditText.text.toString().trim()
         val color = colorText.text.toString().trim()
-        var colorTyped = colorEditText.text.toString().trim()
-        val numbering = numbering.text.toString().trim()
         val number20 = number20Text.text.toString().trim()
-        var number20Typed = number20EditText.text.toString().trim()
         val number21 = number21Text.text.toString().trim()
-        val number21Typed = number21EditText.text.toString().trim()
         val number22 = number22Text.text.toString().trim()
-        val number22Typed = number22EditText.text.toString().trim()
         val number23 = number23Text.text.toString().trim()
-        val number23Typed = number23EditText.text.toString().trim()
         val number24 = number24Text.text.toString().trim()
-        val number24Typed = number24EditText.text.toString().trim()
         val number25 = number25Text.text.toString().trim()
-        val number25Typed = number25EditText.text.toString().trim()
         val number26 = number26Text.text.toString().trim()
-        val number26Typed = number26EditText.text.toString().trim()
         val number27 = number27Text.text.toString().trim()
-        val number27Typed = number27EditText.text.toString().trim()
         val number28 = number28Text.text.toString().trim()
-        val number28Typed = number28EditText.text.toString().trim()
         val number29 = number29Text.text.toString().trim()
-        val number29Typed = number29EditText.text.toString().trim()
         val number30 = number30Text.text.toString().trim()
-        val number30Typed = number30EditText.text.toString().trim()
         val number31 = number31Text.text.toString().trim()
-        val number31Typed = number31EditText.text.toString().trim()
         val number32 = number32Text.text.toString().trim()
-        val number32Typed = number32EditText.text.toString().trim()
         val number33 = number33Text.text.toString().trim()
-        val number33Typed = number33EditText.text.toString().trim()
         val number34 = number34Text.text.toString().trim()
-        val number34Typed = number34EditText.text.toString().trim()
         val number35 = number35Text.text.toString().trim()
-        val number35Typed = number35EditText.text.toString().trim()
         val number36 = number36Text.text.toString().trim()
-        val number36Typed = number36EditText.text.toString().trim()
         val number37 = number37Text.text.toString().trim()
-        val number37Typed = number37EditText.text.toString().trim()
         val number38 = number38Text.text.toString().trim()
-        val number38Typed = number38EditText.text.toString().trim()
         val number39 = number39Text.text.toString().trim()
-        val number39Typed = number39EditText.text.toString().trim()
         val number40 = number40Text.text.toString().trim()
-        val number40Typed = number40EditText.text.toString().trim()
         val number41 = number41Text.text.toString().trim()
-        val number41Typed = number41EditText.text.toString().trim()
         val number42 = number42Text.text.toString().trim()
-        val number42Typed = number42EditText.text.toString().trim()
         val number43 = number43Text.text.toString().trim()
-        val number43Typed = number43EditText.text.toString().trim()
         val number44 = number44Text.text.toString().trim()
-        val number44Typed = number44EditText.text.toString().trim()
         val number45 = number45Text.text.toString().trim()
-        val number45Typed = number45EditText.text.toString().trim()
         val number46 = number46Text.text.toString().trim()
-        var number46Typed = number46EditText.text.toString().trim()
-
-
-//        refTyped $pairTyped $colorTyped
-
-        if (refTyped.isEmpty()) {
-            refTyped = "   "
-        }
-
-        if (pairTyped.isEmpty()) {
-            pairTyped = "                "
-        }
-
-        if (colorTyped.isEmpty()) {
-            colorTyped = " "
-        }
-
-
-
-
-
-        if (number20Typed.isEmpty()) {
-            number20Typed = "0"
-        }
 
         try {
             val fileName = System.currentTimeMillis().toString() + ".pdf"
@@ -347,252 +337,250 @@ class MainActivity : AppCompatActivity() {
             document.add(Paragraph(" "))
             document.add(LineSeparator())
             document.add(Paragraph(" "))
-
-
-//            val glue = Chunk(VerticalPositionMark())
-//            val p = Paragraph("Text to the left")
-//            p.add(Chunk(glue))
-//            p.add("Text to the right")
-//            document.add(p)
-
-            val titleTableFrom20To26 = PdfPTable(10)
-            titleTableFrom20To26.widthPercentage = 100f
-            titleTableFrom20To26.addCell(ref)
-            titleTableFrom20To26.addCell(pair)
-            titleTableFrom20To26.addCell(color)
-            titleTableFrom20To26.addCell(number20)
-            titleTableFrom20To26.addCell(number21)
-            titleTableFrom20To26.addCell(number22)
-            titleTableFrom20To26.addCell(number23)
-            titleTableFrom20To26.addCell(number24)
-            titleTableFrom20To26.addCell(number25)
-            titleTableFrom20To26.addCell(number26)
-            document.add(titleTableFrom20To26)
-
-            val order1From20To26 = PdfPTable(10)
-            order1From20To26.widthPercentage = 100f
-            order1From20To26.addCell(refTyped)
-            order1From20To26.addCell(pairTyped)
-            order1From20To26.addCell(colorTyped)
-            order1From20To26.addCell(number20Typed)
-            order1From20To26.addCell(number21Typed)
-            order1From20To26.addCell(number22Typed)
-            order1From20To26.addCell(number23Typed)
-            order1From20To26.addCell(number24Typed)
-            order1From20To26.addCell(number25Typed)
-            order1From20To26.addCell(number26Typed)
-            document.add(order1From20To26)
-
-
-            val order2From20To26 = PdfPTable(10)
-            order2From20To26.widthPercentage = 100f
-            order2From20To26.addCell(refTyped)
-            order2From20To26.addCell(pairTyped)
-            order2From20To26.addCell(colorTyped)
-            order2From20To26.addCell(number20Typed)
-            order2From20To26.addCell(number21Typed)
-            order2From20To26.addCell(number22Typed)
-            order2From20To26.addCell(number23Typed)
-            order2From20To26.addCell(number24Typed)
-            order2From20To26.addCell(number25Typed)
-            order2From20To26.addCell(number26Typed)
-            document.add(order2From20To26)
-
-            val order3From20To26 = PdfPTable(10)
-            order3From20To26.widthPercentage = 100f
-            order3From20To26.addCell(refTyped)
-            order3From20To26.addCell(pairTyped)
-            order3From20To26.addCell(colorTyped)
-            order3From20To26.addCell(number20Typed)
-            order3From20To26.addCell(number21Typed)
-            order3From20To26.addCell(number22Typed)
-            order3From20To26.addCell(number23Typed)
-            order3From20To26.addCell(number24Typed)
-            order3From20To26.addCell(number25Typed)
-            order3From20To26.addCell(number26Typed)
-            document.add(order3From20To26)
-
-            document.add(Paragraph(" "))
             document.add(Paragraph(" "))
 
-            val titleTableFrom27To33 = PdfPTable(10)
-            titleTableFrom27To33.widthPercentage = 100f
-            titleTableFrom27To33.addCell(ref)
-            titleTableFrom27To33.addCell(pair)
-            titleTableFrom27To33.addCell(color)
-            titleTableFrom27To33.addCell(number27)
-            titleTableFrom27To33.addCell(number28)
-            titleTableFrom27To33.addCell(number29)
-            titleTableFrom27To33.addCell(number30)
-            titleTableFrom27To33.addCell(number31)
-            titleTableFrom27To33.addCell(number32)
-            titleTableFrom27To33.addCell(number33)
-            document.add(titleTableFrom27To33)
+            orderItens.forEach { item ->
 
-            val order1From27To33 = PdfPTable(10)
-            order1From27To33.widthPercentage = 100f
-            order1From27To33.addCell(refTyped)
-            order1From27To33.addCell(pairTyped)
-            order1From27To33.addCell(colorTyped)
-            order1From27To33.addCell(number27Typed)
-            order1From27To33.addCell(number28Typed)
-            order1From27To33.addCell(number29Typed)
-            order1From27To33.addCell(number30Typed)
-            order1From27To33.addCell(number31Typed)
-            order1From27To33.addCell(number32Typed)
-            order1From27To33.addCell(number33Typed)
-            document.add(order1From27To33)
+                val titleTable = PdfPTable(3)
+                titleTable.widthPercentage = 100f
+                titleTable.addCell(ref + " " + item.reference)
+                titleTable.addCell(pair + " " + item.pairs)
+                titleTable.addCell(color + " " + item.color)
+                document.add(titleTable)
 
+                document.add(Paragraph(" "))
 
-            val order2From27To33 = PdfPTable(10)
-            order2From27To33.widthPercentage = 100f
-            order2From27To33.addCell(refTyped)
-            order2From27To33.addCell(pairTyped)
-            order2From27To33.addCell(colorTyped)
-            order2From27To33.addCell(number27Typed)
-            order2From27To33.addCell(number28Typed)
-            order2From27To33.addCell(number29Typed)
-            order2From27To33.addCell(number30Typed)
-            order2From27To33.addCell(number31Typed)
-            order2From27To33.addCell(number32Typed)
-            order2From27To33.addCell(number33Typed)
-            document.add(order2From27To33)
+                val titleAdultNumbering = PdfPTable(13)
+                titleAdultNumbering.widthPercentage = 100f
+                titleAdultNumbering.addCell("nº $number33")
+                titleAdultNumbering.addCell("nº $number34")
+                titleAdultNumbering.addCell("nº $number35")
+                titleAdultNumbering.addCell("nº $number36")
+                titleAdultNumbering.addCell("nº $number37")
+                titleAdultNumbering.addCell("nº $number38")
+                titleAdultNumbering.addCell("nº $number39")
+                titleAdultNumbering.addCell("nº $number40")
+                titleAdultNumbering.addCell("nº $number41")
+                titleAdultNumbering.addCell("nº $number42")
+                titleAdultNumbering.addCell("nº $number43")
+                titleAdultNumbering.addCell("nº $number44")
+                titleAdultNumbering.addCell("nº $number45")
+                document.add(titleAdultNumbering)
 
-            val order3From27To33 = PdfPTable(10)
-            order3From27To33.widthPercentage = 100f
-            order3From27To33.addCell(refTyped)
-            order3From27To33.addCell(pairTyped)
-            order3From27To33.addCell(colorTyped)
-            order3From27To33.addCell(number27Typed)
-            order3From27To33.addCell(number28Typed)
-            order3From27To33.addCell(number29Typed)
-            order3From27To33.addCell(number30Typed)
-            order3From27To33.addCell(number31Typed)
-            order3From27To33.addCell(number32Typed)
-            order3From27To33.addCell(number33Typed)
-            document.add(order3From27To33)
+                val adultNumbering = PdfPTable(13)
+                adultNumbering.widthPercentage = 100f
+                adultNumbering.addCell(item.amountNumber33)
+                adultNumbering.addCell(item.amountNumber34)
+                adultNumbering.addCell(item.amountNumber35)
+                adultNumbering.addCell(item.amountNumber36)
+                adultNumbering.addCell(item.amountNumber37)
+                adultNumbering.addCell(item.amountNumber38)
+                adultNumbering.addCell(item.amountNumber39)
+                adultNumbering.addCell(item.amountNumber40)
+                adultNumbering.addCell(item.amountNumber41)
+                adultNumbering.addCell(item.amountNumber42)
+                adultNumbering.addCell(item.amountNumber43)
+                adultNumbering.addCell(item.amountNumber44)
+                adultNumbering.addCell(item.amountNumber45)
+                document.add(adultNumbering)
 
-            document.add(Paragraph(" "))
-            document.add(Paragraph(" "))
+                val finalAdultTable = PdfPTable(3)
+                finalAdultTable.widthPercentage = 100f
 
-            val titleTableFrom34To40 = PdfPTable(10)
-            titleTableFrom34To40.widthPercentage = 100f
-            titleTableFrom34To40.addCell(ref)
-            titleTableFrom34To40.addCell(pair)
-            titleTableFrom34To40.addCell(color)
-            titleTableFrom34To40.addCell(number34)
-            titleTableFrom34To40.addCell(number35)
-            titleTableFrom34To40.addCell(number36)
-            titleTableFrom34To40.addCell(number37)
-            titleTableFrom34To40.addCell(number38)
-            titleTableFrom34To40.addCell(number39)
-            titleTableFrom34To40.addCell(number40)
-            document.add(titleTableFrom34To40)
+                finalAdultTable.addCell(
+                    "Total:" + " " + (item.amountNumber33.toString()
+                        .toInt() + item.amountNumber34.toString().toInt() +
+                            item.amountNumber35.toString().toInt() + item.amountNumber36.toString()
+                        .toInt() + item.amountNumber37.toString().toInt() +
+                            item.amountNumber38.toString().toInt() + item.amountNumber39.toString()
+                        .toInt() + item.amountNumber40.toString().toInt() +
+                            item.amountNumber41.toString().toInt() + item.amountNumber42.toString()
+                        .toInt() + item.amountNumber43.toString().toInt() +
+                            item.amountNumber44.toString().toInt() + item.amountNumber45.toString()
+                        .toInt())
+                ).toString()
 
-            val order1From34To40 = PdfPTable(10)
-            order1From34To40.widthPercentage = 100f
-            order1From34To40.addCell(refTyped)
-            order1From34To40.addCell(pairTyped)
-            order1From34To40.addCell(colorTyped)
-            order1From34To40.addCell(number34Typed)
-            order1From34To40.addCell(number35Typed)
-            order1From34To40.addCell(number36Typed)
-            order1From34To40.addCell(number37Typed)
-            order1From34To40.addCell(number38Typed)
-            order1From34To40.addCell(number39Typed)
-            order1From34To40.addCell(number40Typed)
-            document.add(order1From34To40)
+                finalAdultTable.addCell("Valor Unitário:")
+                finalAdultTable.addCell("Valor Total:")
+                document.add(finalAdultTable)
 
-            val order2From34To40 = PdfPTable(10)
-            order2From34To40.widthPercentage = 100f
-            order2From34To40.addCell(refTyped)
-            order2From34To40.addCell(pairTyped)
-            order2From34To40.addCell(colorTyped)
-            order2From34To40.addCell(number34Typed)
-            order2From34To40.addCell(number35Typed)
-            order2From34To40.addCell(number36Typed)
-            order2From34To40.addCell(number37Typed)
-            order2From34To40.addCell(number38Typed)
-            order2From34To40.addCell(number39Typed)
-            order2From34To40.addCell(number40Typed)
-            document.add(order2From34To40)
+                document.add(Paragraph(" "))
 
-            val order3From34To40 = PdfPTable(10)
-            order3From34To40.widthPercentage = 100f
-            order3From34To40.addCell(refTyped)
-            order3From34To40.addCell(pairTyped)
-            order3From34To40.addCell(colorTyped)
-            order3From34To40.addCell(number34Typed)
-            order3From34To40.addCell(number35Typed)
-            order3From34To40.addCell(number36Typed)
-            order3From34To40.addCell(number37Typed)
-            order3From34To40.addCell(number38Typed)
-            order3From34To40.addCell(number39Typed)
-            order3From34To40.addCell(number40Typed)
-            document.add(order3From34To40)
+                val titleChildrenNumbering = PdfPTable(13)
+                titleChildrenNumbering.widthPercentage = 100f
+                titleChildrenNumbering.addCell("nº $number20")
+                titleChildrenNumbering.addCell("nº $number21")
+                titleChildrenNumbering.addCell("nº $number22")
+                titleChildrenNumbering.addCell("nº $number23")
+                titleChildrenNumbering.addCell("nº $number24")
+                titleChildrenNumbering.addCell("nº $number25")
+                titleChildrenNumbering.addCell("nº $number26")
+                titleChildrenNumbering.addCell("nº $number27")
+                titleChildrenNumbering.addCell("nº $number28")
+                titleChildrenNumbering.addCell("nº $number29")
+                titleChildrenNumbering.addCell("nº $number30")
+                titleChildrenNumbering.addCell("nº $number31")
+                titleChildrenNumbering.addCell("nº $number32")
+                document.add(titleChildrenNumbering)
 
-            document.add(Paragraph(" "))
-            document.add(Paragraph(" "))
+                val childrenNumbering = PdfPTable(13)
+                childrenNumbering.widthPercentage = 100f
+                childrenNumbering.addCell(item.amountNumber20)
+                childrenNumbering.addCell(item.amountNumber21)
+                childrenNumbering.addCell(item.amountNumber22)
+                childrenNumbering.addCell(item.amountNumber23)
+                childrenNumbering.addCell(item.amountNumber24)
+                childrenNumbering.addCell(item.amountNumber25)
+                childrenNumbering.addCell(item.amountNumber26)
+                childrenNumbering.addCell(item.amountNumber27)
+                childrenNumbering.addCell(item.amountNumber28)
+                childrenNumbering.addCell(item.amountNumber29)
+                childrenNumbering.addCell(item.amountNumber30)
+                childrenNumbering.addCell(item.amountNumber31)
+                childrenNumbering.addCell(item.amountNumber32)
+                document.add(childrenNumbering)
 
+                val finalChildrenTable = PdfPTable(3)
+                finalChildrenTable.widthPercentage = 100f
 
-            val titleTableFrom41To47 = PdfPTable(10)
-            titleTableFrom41To47.widthPercentage = 100f
-            titleTableFrom41To47.addCell(ref)
-            titleTableFrom41To47.addCell(pair)
-            titleTableFrom41To47.addCell(color)
-            titleTableFrom41To47.addCell(number41)
-            titleTableFrom41To47.addCell(number42)
-            titleTableFrom41To47.addCell(number43)
-            titleTableFrom41To47.addCell(number44)
-            titleTableFrom41To47.addCell(number45)
-            titleTableFrom41To47.addCell(number46)
-            titleTableFrom41To47.addCell("47")
-            document.add(titleTableFrom41To47)
+                finalChildrenTable.addCell(
+                    "Total:" + " " + (item.amountNumber20.toString()
+                        .toInt() + item.amountNumber21.toString().toInt() +
+                            item.amountNumber22.toString().toInt() + item.amountNumber23.toString()
+                        .toInt() + item.amountNumber24.toString().toInt() +
+                            item.amountNumber25.toString().toInt() + item.amountNumber26.toString()
+                        .toInt() + item.amountNumber27.toString().toInt() +
+                            item.amountNumber28.toString().toInt() + item.amountNumber29.toString()
+                        .toInt() + item.amountNumber30.toString().toInt() +
+                            item.amountNumber31.toString().toInt() + item.amountNumber32.toString()
+                        .toInt())
+                ).toString()
 
-            val order1From41To47 = PdfPTable(10)
-            order1From41To47.widthPercentage = 100f
-            order1From41To47.addCell(refTyped)
-            order1From41To47.addCell(pairTyped)
-            order1From41To47.addCell(colorTyped)
-            order1From41To47.addCell(number41Typed)
-            order1From41To47.addCell(number42Typed)
-            order1From41To47.addCell(number43Typed)
-            order1From41To47.addCell(number44Typed)
-            order1From41To47.addCell(number45Typed)
-            order1From41To47.addCell(number46Typed)
-            order1From41To47.addCell(" ")
-            document.add(order1From41To47)
+                finalChildrenTable.addCell("Valor Unitário:")
+                finalChildrenTable.addCell("Valor Total:")
+                document.add(finalChildrenTable)
 
+                document.add(Paragraph(" "))
+                document.add(Paragraph(" "))
+                document.add(LineSeparator())
+                document.add(Paragraph(" "))
+                document.add(Paragraph(" "))
+            }
 
-            val order2From41To47 = PdfPTable(10)
-            order2From41To47.widthPercentage = 100f
-            order2From41To47.addCell(refTyped)
-            order2From41To47.addCell(pairTyped)
-            order2From41To47.addCell(colorTyped)
-            order2From41To47.addCell(number41Typed)
-            order2From41To47.addCell(number42Typed)
-            order2From41To47.addCell(number43Typed)
-            order2From41To47.addCell(number44Typed)
-            order2From41To47.addCell(number45Typed)
-            order2From41To47.addCell(number46Typed)
-            order2From41To47.addCell(" ")
-            document.add(order2From41To47)
-
-            val order3From41To47 = PdfPTable(10)
-            order3From41To47.widthPercentage = 100f
-            order3From41To47.addCell(refTyped)
-            order3From41To47.addCell(pairTyped)
-            order3From41To47.addCell(colorTyped)
-            order3From41To47.addCell(number41Typed)
-            order3From41To47.addCell(number42Typed)
-            order3From41To47.addCell(number43Typed)
-            order3From41To47.addCell(number44Typed)
-            order3From41To47.addCell(number45Typed)
-            order3From41To47.addCell(number46Typed)
-            order3From41To47.addCell(" ")
-            document.add(order3From41To47)
+//            val order2From20To26 = PdfPTable(10)
+//            order2From20To26.widthPercentage = 100f
+//            order2From20To26.addCell(refTyped)
+//            order2From20To26.addCell(pairTyped)
+//            order2From20To26.addCell(colorTyped)
+//            order2From20To26.addCell(number20Typed)
+//            order2From20To26.addCell(number21Typed)
+//            order2From20To26.addCell(number22Typed)
+//            order2From20To26.addCell(number23Typed)
+//            order2From20To26.addCell(number24Typed)
+//            order2From20To26.addCell(number25Typed)
+//            order2From20To26.addCell(number26Typed)
+//            document.add(order2From20To26)
+//
+//            val order3From20To26 = PdfPTable(10)
+//            order3From20To26.widthPercentage = 100f
+//            order3From20To26.addCell(refTyped)
+//            order3From20To26.addCell(pairTyped)
+//            order3From20To26.addCell(colorTyped)
+//            order3From20To26.addCell(number20Typed)
+//            order3From20To26.addCell(number21Typed)
+//            order3From20To26.addCell(number22Typed)
+//            order3From20To26.addCell(number23Typed)
+//            order3From20To26.addCell(number24Typed)
+//            order3From20To26.addCell(number25Typed)
+//            order3From20To26.addCell(number26Typed)
+//            document.add(order3From20To26)
 
 
+//            val order2From27To33 = PdfPTable(10)
+//            order2From27To33.widthPercentage = 100f
+//            order2From27To33.addCell(refTyped)
+//            order2From27To33.addCell(pairTyped)
+//            order2From27To33.addCell(colorTyped)
+//            order2From27To33.addCell(number27Typed)
+//            order2From27To33.addCell(number28Typed)
+//            order2From27To33.addCell(number29Typed)
+//            order2From27To33.addCell(number30Typed)
+//            order2From27To33.addCell(number31Typed)
+//            order2From27To33.addCell(number32Typed)
+//            order2From27To33.addCell(number33Typed)
+//            document.add(order2From27To33)
+//
+//            val order3From27To33 = PdfPTable(10)
+//            order3From27To33.widthPercentage = 100f
+//            order3From27To33.addCell(refTyped)
+//            order3From27To33.addCell(pairTyped)
+//            order3From27To33.addCell(colorTyped)
+//            order3From27To33.addCell(number27Typed)
+//            order3From27To33.addCell(number28Typed)
+//            order3From27To33.addCell(number29Typed)
+//            order3From27To33.addCell(number30Typed)
+//            order3From27To33.addCell(number31Typed)
+//            order3From27To33.addCell(number32Typed)
+//            order3From27To33.addCell(number33Typed)
+//            document.add(order3From27To33)
+
+
+//            val order2From34To40 = PdfPTable(10)
+//            order2From34To40.widthPercentage = 100f
+//            order2From34To40.addCell(refTyped)
+//            order2From34To40.addCell(pairTyped)
+//            order2From34To40.addCell(colorTyped)
+//            order2From34To40.addCell(number34Typed)
+//            order2From34To40.addCell(number35Typed)
+//            order2From34To40.addCell(number36Typed)
+//            order2From34To40.addCell(number37Typed)
+//            order2From34To40.addCell(number38Typed)
+//            order2From34To40.addCell(number39Typed)
+//            order2From34To40.addCell(number40Typed)
+//            document.add(order2From34To40)
+//
+//            val order3From34To40 = PdfPTable(10)
+//            order3From34To40.widthPercentage = 100f
+//            order3From34To40.addCell(refTyped)
+//            order3From34To40.addCell(pairTyped)
+//            order3From34To40.addCell(colorTyped)
+//            order3From34To40.addCell(number34Typed)
+//            order3From34To40.addCell(number35Typed)
+//            order3From34To40.addCell(number36Typed)
+//            order3From34To40.addCell(number37Typed)
+//            order3From34To40.addCell(number38Typed)
+//            order3From34To40.addCell(number39Typed)
+//            order3From34To40.addCell(number40Typed)
+//            document.add(order3From34To40)
+
+
+//            val order2From41To47 = PdfPTable(10)
+//            order2From41To47.widthPercentage = 100f
+//            order2From41To47.addCell(refTyped)
+//            order2From41To47.addCell(pairTyped)
+//            order2From41To47.addCell(colorTyped)
+//            order2From41To47.addCell(number41Typed)
+//            order2From41To47.addCell(number42Typed)
+//            order2From41To47.addCell(number43Typed)
+//            order2From41To47.addCell(number44Typed)
+//            order2From41To47.addCell(number45Typed)
+//            order2From41To47.addCell(number46Typed)
+//            order2From41To47.addCell(" ")
+//            document.add(order2From41To47)
+//
+//            val order3From41To47 = PdfPTable(10)
+//            order3From41To47.widthPercentage = 100f
+//            order3From41To47.addCell(refTyped)
+//            order3From41To47.addCell(pairTyped)
+//            order3From41To47.addCell(colorTyped)
+//            order3From41To47.addCell(number41Typed)
+//            order3From41To47.addCell(number42Typed)
+//            order3From41To47.addCell(number43Typed)
+//            order3From41To47.addCell(number44Typed)
+//            order3From41To47.addCell(number45Typed)
+//            order3From41To47.addCell(number46Typed)
+//            order3From41To47.addCell(" ")
+//            document.add(order3From41To47)
 
 
 //            document.add(Paragraph("$ref  $pair $color $number20 $number21 $number22 $number23 $number24 $number25 $number26"))
@@ -628,5 +616,38 @@ class MainActivity : AppCompatActivity() {
             exportToPDF()
         }
 
+    }
+
+    private fun clear() {
+        refEditText.text.clear()
+        pairEditText.text.clear()
+        colorEditText.text.clear()
+        number20EditText.text.clear()
+        number21EditText.text.clear()
+        number22EditText.text.clear()
+        number23EditText.text.clear()
+        number24EditText.text.clear()
+        number25EditText.text.clear()
+        number26EditText.text.clear()
+        number27EditText.text.clear()
+        number28EditText.text.clear()
+        number29EditText.text.clear()
+        number30EditText.text.clear()
+        number31EditText.text.clear()
+        number32EditText.text.clear()
+        number33EditText.text.clear()
+        number34EditText.text.clear()
+        number35EditText.text.clear()
+        number36EditText.text.clear()
+        number37EditText.text.clear()
+        number38EditText.text.clear()
+        number39EditText.text.clear()
+        number40EditText.text.clear()
+        number41EditText.text.clear()
+        number42EditText.text.clear()
+        number43EditText.text.clear()
+        number44EditText.text.clear()
+        number45EditText.text.clear()
+        number46EditText.text.clear()
     }
 }
