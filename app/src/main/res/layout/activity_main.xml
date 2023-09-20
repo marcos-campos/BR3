@@ -1289,7 +1289,7 @@
             android:layout_height="wrap_content"
             android:text="Gerar pedido"
             app:layout_constraintTop_toBottomOf="@id/main_linear_layout_03"
-            android:layout_marginTop="10dp"
+            android:layout_margin="15dp"
             app:layout_constraintEnd_toEndOf="parent" />
 
 
@@ -1297,10 +1297,10 @@
             android:id="@+id/main_btn_new_item"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Adicionar novo item"
+            android:text="Adicionar item"
             android:backgroundTint="@color/red"
             app:layout_constraintTop_toBottomOf="@id/main_linear_layout_03"
-            android:layout_marginTop="10dp"
+            android:layout_margin="15dp"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
