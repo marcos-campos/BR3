@@ -341,6 +341,8 @@ class MainActivity : AppCompatActivity() {
 
             orderItens.forEach { item ->
 
+                checkIfTheNumberingIsEmpty(item)
+
                 val titleTable = PdfPTable(3)
                 titleTable.widthPercentage = 100f
                 titleTable.addCell(ref + " " + item.reference)
@@ -442,6 +444,13 @@ class MainActivity : AppCompatActivity() {
 
                 val finalChildrenTable = PdfPTable(3)
                 finalChildrenTable.widthPercentage = 100f
+
+
+                
+
+
+
+
 
                 finalChildrenTable.addCell(
                     "Total:" + " " + (item.amountNumber20.toString()
@@ -593,6 +602,116 @@ class MainActivity : AppCompatActivity() {
 
         } catch (e: Exception) {
             e.printStackTrace()
+        }
+    }
+
+    private fun checkIfTheNumberingIsEmpty(item: Item) {
+        if (item.amountNumber20.isEmpty()) {
+            item.amountNumber20 = "0"
+        }
+
+        if (item.amountNumber21.isEmpty()) {
+            item.amountNumber21 = "0"
+        }
+
+        if (item.amountNumber22.isEmpty()) {
+            item.amountNumber22 = "0"
+        }
+
+        if (item.amountNumber23.isEmpty()) {
+            item.amountNumber23 = "0"
+        }
+
+        if (item.amountNumber24.isEmpty()) {
+            item.amountNumber24 = "0"
+        }
+
+        if (item.amountNumber25.isEmpty()) {
+            item.amountNumber25 = "0"
+        }
+
+        if (item.amountNumber26.isEmpty()) {
+            item.amountNumber26 = "0"
+        }
+
+        if (item.amountNumber27.isEmpty()) {
+            item.amountNumber27 = "0"
+        }
+
+        if (item.amountNumber28.isEmpty()) {
+            item.amountNumber28 = "0"
+        }
+
+        if (item.amountNumber29.isEmpty()) {
+            item.amountNumber29 = "0"
+        }
+
+        if (item.amountNumber30.isEmpty()) {
+            item.amountNumber30 = "0"
+        }
+
+        if (item.amountNumber31.isEmpty()) {
+            item.amountNumber31 = "0"
+        }
+
+        if (item.amountNumber32.isEmpty()) {
+            item.amountNumber32 = "0"
+        }
+
+        if (item.amountNumber33.isEmpty()) {
+            item.amountNumber33 = "0"
+        }
+
+        if (item.amountNumber34.isEmpty()) {
+            item.amountNumber34 = "0"
+        }
+
+        if (item.amountNumber35.isEmpty()) {
+            item.amountNumber35 = "0"
+        }
+
+        if (item.amountNumber36.isEmpty()) {
+            item.amountNumber36 = "0"
+        }
+
+        if (item.amountNumber37.isEmpty()) {
+            item.amountNumber37 = "0"
+        }
+
+        if (item.amountNumber38.isEmpty()) {
+            item.amountNumber38 = "0"
+        }
+
+        if (item.amountNumber39.isEmpty()) {
+            item.amountNumber39 = "0"
+        }
+
+        if (item.amountNumber40.isEmpty()) {
+            item.amountNumber40 = "0"
+        }
+
+        if (item.amountNumber41.isEmpty()) {
+            item.amountNumber41 = "0"
+        }
+
+        if (item.amountNumber42.isEmpty()) {
+            item.amountNumber42 = "0"
+        }
+
+        if (item.amountNumber43.isEmpty()) {
+            item.amountNumber43 = "0"
+        }
+
+        if (item.amountNumber44.isEmpty()) {
+            item.amountNumber44 = "0"
+        }
+
+        if (item.amountNumber45.isEmpty()) {
+            item.amountNumber45 = "0"
+        }
+
+        if (item.amountNumber46.isEmpty()) {
+            item.amountNumber46 = "0"
         }
     }
 
