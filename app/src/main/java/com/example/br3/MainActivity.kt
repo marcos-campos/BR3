@@ -19,6 +19,9 @@ import com.itextpdf.text.pdf.PdfWriter
 import com.itextpdf.text.pdf.draw.LineSeparator
 import java.io.File
 import java.io.FileOutputStream
+import java.text.SimpleDateFormat
+import java.util.Calendar
+import java.util.Date
 
 
 class MainActivity : AppCompatActivity() {
@@ -110,6 +113,9 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+
+
+
 
         exportButton = findViewById<Button>(R.id.main_btn_export)
         nameEditText = findViewById<EditText>(R.id.main_ed_name)
@@ -299,7 +305,14 @@ class MainActivity : AppCompatActivity() {
             if (orderTyped.isEmpty()){
                 orderTyped = "1"
             }
-            val fileName = "Pedido BR3 nº$orderTyped.pdf"
+
+            val currentTime: Date = Calendar.getInstance().time
+            println(currentTime)
+
+            val date: String = SimpleDateFormat("dd.MM.yyyy").format(currentTime)
+            println(date)
+
+            val fileName = "$date - Pedido BR3 nº$orderTyped.pdf"
 
             val pdfFile = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
