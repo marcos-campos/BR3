@@ -4,6 +4,8 @@ data class Item(
     val reference: String,
     val pairs: String,
     val color: String,
+    var childrensUnitaryValue: String,
+    var adultUnitaryValue: String,
     var amountNumber20: String,
     var amountNumber21: String,
     var amountNumber22: String,
@@ -31,5 +33,4 @@ data class Item(
     var amountNumber44: String,
     var amountNumber45: String,
     var amountNumber46: String,
-
     )

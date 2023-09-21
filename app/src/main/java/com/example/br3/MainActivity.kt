@@ -110,12 +110,11 @@ class MainActivity : AppCompatActivity() {
     lateinit var number46EditText: EditText
     lateinit var orderItens: ArrayList<Item>
     lateinit var newItemBtn: Button
+    lateinit var adultUnitaryValueEditText: EditText
+    lateinit var childrensUnitaryValueEditText: EditText
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-
-
-
 
         exportButton = findViewById<Button>(R.id.main_btn_export)
         nameEditText = findViewById<EditText>(R.id.main_ed_name)
@@ -201,6 +200,8 @@ class MainActivity : AppCompatActivity() {
         number46EditText = findViewById<EditText>(R.id.main_ed_number_46)
         orderItens = arrayListOf<Item>()
         newItemBtn = findViewById<Button>(R.id.main_btn_new_item)
+        adultUnitaryValueEditText = findViewById<EditText>(R.id.main_ed_adult_unitary_value)
+        childrensUnitaryValueEditText = findViewById<EditText>(R.id.main_ed_childrens_unitary_value)
 
         exportButton.setOnClickListener {
             requestWriteExternalPermission()
@@ -213,6 +214,8 @@ class MainActivity : AppCompatActivity() {
                     refEditText.text.toString(),
                     pairEditText.text.toString(),
                     colorEditText.text.toString(),
+                    childrensUnitaryValueEditText.text.toString(),
+                    adultUnitaryValueEditText.text.toString(),
                     number20EditText.text.toString(),
                     number21EditText.text.toString(),
                     number22EditText.text.toString(),
@@ -401,24 +404,15 @@ class MainActivity : AppCompatActivity() {
                 adultNumbering.addCell(item.amountNumber45)
                 document.add(adultNumbering)
 
+
+                val (totalAmountAdult, resultAdult) = valueTotalAdult(item)
+
+
                 val finalAdultTable = PdfPTable(3)
                 finalAdultTable.widthPercentage = 100f
-
-                finalAdultTable.addCell(
-                    "Total:" + " " + (item.amountNumber33.toString()
-                        .toInt() + item.amountNumber34.toString().toInt() +
-                            item.amountNumber35.toString().toInt() + item.amountNumber36.toString()
-                        .toInt() + item.amountNumber37.toString().toInt() +
-                            item.amountNumber38.toString().toInt() + item.amountNumber39.toString()
-                        .toInt() + item.amountNumber40.toString().toInt() +
-                            item.amountNumber41.toString().toInt() + item.amountNumber42.toString()
-                        .toInt() + item.amountNumber43.toString().toInt() +
-                            item.amountNumber44.toString().toInt() + item.amountNumber45.toString()
-                        .toInt())
-                ).toString()
-
-                finalAdultTable.addCell("Valor Unitário:")
-                finalAdultTable.addCell("Valor Total:")
+                finalAdultTable.addCell("Total: $totalAmountAdult").toString()
+                finalAdultTable.addCell("Valor Unitário: R$" + item.adultUnitaryValue)
+                finalAdultTable.addCell("Valor Total: R$$resultAdult")
                 document.add(finalAdultTable)
 
                 document.add(Paragraph(" "))
@@ -457,24 +451,14 @@ class MainActivity : AppCompatActivity() {
                 childrenNumbering.addCell(item.amountNumber32)
                 document.add(childrenNumbering)
 
+
+                val (totalAmountChildren, resultChildren) = valueTotalChildren(item)
+
                 val finalChildrenTable = PdfPTable(3)
                 finalChildrenTable.widthPercentage = 100f
-
-                finalChildrenTable.addCell(
-                    "Total:" + " " + (item.amountNumber20.toString()
-                        .toInt() + item.amountNumber21.toString().toInt() +
-                            item.amountNumber22.toString().toInt() + item.amountNumber23.toString()
-                        .toInt() + item.amountNumber24.toString().toInt() +
-                            item.amountNumber25.toString().toInt() + item.amountNumber26.toString()
-                        .toInt() + item.amountNumber27.toString().toInt() +
-                            item.amountNumber28.toString().toInt() + item.amountNumber29.toString()
-                        .toInt() + item.amountNumber30.toString().toInt() +
-                            item.amountNumber31.toString().toInt() + item.amountNumber32.toString()
-                        .toInt())
-                ).toString()
-
-                finalChildrenTable.addCell("Valor Unitário:")
-                finalChildrenTable.addCell("Valor Total:")
+                finalChildrenTable.addCell("Total: $totalAmountChildren").toString()
+                finalChildrenTable.addCell("Valor Unitário: R$" + item.childrensUnitaryValue)
+                finalChildrenTable.addCell("Valor Total: R$$resultChildren")
                 document.add(finalChildrenTable)
 
                 document.add(Paragraph(" "))
@@ -490,6 +474,38 @@ class MainActivity : AppCompatActivity() {
         } catch (e: Exception) {
             e.printStackTrace()
         }
+    }
+
+    private fun valueTotalChildren(item: Item): Pair<Int, Int> {
+        val totalAmountChildren = item.amountNumber20.toString()
+            .toInt() + item.amountNumber21.toString().toInt() +
+                item.amountNumber22.toString().toInt() + item.amountNumber23.toString()
+            .toInt() + item.amountNumber24.toString().toInt() +
+                item.amountNumber25.toString().toInt() + item.amountNumber26.toString()
+            .toInt() + item.amountNumber27.toString().toInt() +
+                item.amountNumber28.toString().toInt() + item.amountNumber29.toString()
+            .toInt() + item.amountNumber30.toString().toInt() +
+                item.amountNumber31.toString().toInt() + item.amountNumber32.toString()
+            .toInt()
+        val unitaryValueChildren = item.childrensUnitaryValue.toString().toInt()
+        val resultChildren = totalAmountChildren * unitaryValueChildren
+        return Pair(totalAmountChildren, resultChildren)
+    }
+
+    private fun valueTotalAdult(item: Item): Pair<Int, Int> {
+        val totalAmountAdult = item.amountNumber33.toString()
+            .toInt() + item.amountNumber34.toString().toInt() +
+                item.amountNumber35.toString().toInt() + item.amountNumber36.toString()
+            .toInt() + item.amountNumber37.toString().toInt() +
+                item.amountNumber38.toString().toInt() + item.amountNumber39.toString()
+            .toInt() + item.amountNumber40.toString().toInt() +
+                item.amountNumber41.toString().toInt() + item.amountNumber42.toString()
+            .toInt() + item.amountNumber43.toString().toInt() +
+                item.amountNumber44.toString().toInt() + item.amountNumber45.toString()
+            .toInt()
+        val unitaryValueAdult = item.adultUnitaryValue.toString().toInt()
+        val resultAdult = totalAmountAdult * unitaryValueAdult
+        return Pair(totalAmountAdult, resultAdult)
     }
 
     private fun checkIfTheNumberingIsEmpty(item: Item) {
@@ -600,6 +616,14 @@ class MainActivity : AppCompatActivity() {
         if (item.amountNumber46.isEmpty()) {
             item.amountNumber46 = "0"
         }
+
+        if (item.adultUnitaryValue.isEmpty()) {
+            item.adultUnitaryValue = "0"
+        }
+
+        if (item.childrensUnitaryValue.isEmpty()) {
+            item.childrensUnitaryValue = "0"
+        }
     }
 
     private fun requestWriteExternalPermission() {
@@ -655,5 +679,7 @@ class MainActivity : AppCompatActivity() {
         number44EditText.text.clear()
         number45EditText.text.clear()
         number46EditText.text.clear()
+        childrensUnitaryValueEditText.text.clear()
+        adultUnitaryValueEditText.text.clear()
     }
 }
