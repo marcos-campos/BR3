@@ -355,7 +355,6 @@ class MainActivity : AppCompatActivity() {
             document.add(Paragraph(" "))
             document.add(LineSeparator())
             document.add(Paragraph(" "))
-            document.add(Paragraph(" "))
 
             orderItens.forEach { item ->
 
@@ -464,7 +463,6 @@ class MainActivity : AppCompatActivity() {
                 document.add(Paragraph(" "))
                 document.add(Paragraph(" "))
                 document.add(LineSeparator())
-                document.add(Paragraph(" "))
                 document.add(Paragraph(" "))
             }
 
