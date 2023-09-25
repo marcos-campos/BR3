@@ -306,7 +306,7 @@ class MainActivity : AppCompatActivity() {
 
         try {
             if (orderTyped.isEmpty()){
-                orderTyped = "1"
+                orderTyped = " "
             }
 
             val currentTime: Date = Calendar.getInstance().time
@@ -474,7 +474,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun valueTotalChildren(item: Item): Pair<Int, Int> {
+    private fun valueTotalChildren(item: Item): Pair<Int, Double> {
         val totalAmountChildren = item.amountNumber20.toString()
             .toInt() + item.amountNumber21.toString().toInt() +
                 item.amountNumber22.toString().toInt() + item.amountNumber23.toString()
@@ -485,12 +485,12 @@ class MainActivity : AppCompatActivity() {
             .toInt() + item.amountNumber30.toString().toInt() +
                 item.amountNumber31.toString().toInt() + item.amountNumber32.toString()
             .toInt()
-        val unitaryValueChildren = item.childrensUnitaryValue.toString().toInt()
+        val unitaryValueChildren = item.childrensUnitaryValue.toDouble()
         val resultChildren = totalAmountChildren * unitaryValueChildren
         return Pair(totalAmountChildren, resultChildren)
     }
 
-    private fun valueTotalAdult(item: Item): Pair<Int, Int> {
+    private fun valueTotalAdult(item: Item): Pair<Int, Double> {
         val totalAmountAdult = item.amountNumber33.toString()
             .toInt() + item.amountNumber34.toString().toInt() +
                 item.amountNumber35.toString().toInt() + item.amountNumber36.toString()
@@ -501,7 +501,7 @@ class MainActivity : AppCompatActivity() {
             .toInt() + item.amountNumber43.toString().toInt() +
                 item.amountNumber44.toString().toInt() + item.amountNumber45.toString()
             .toInt()
-        val unitaryValueAdult = item.adultUnitaryValue.toString().toInt()
+        val unitaryValueAdult = item.adultUnitaryValue.toDouble()
         val resultAdult = totalAmountAdult * unitaryValueAdult
         return Pair(totalAmountAdult, resultAdult)
     }
