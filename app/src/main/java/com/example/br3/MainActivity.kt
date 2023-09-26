@@ -2,6 +2,7 @@ package com.example.br3
 
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.os.Environment
 import android.widget.Button
@@ -246,7 +247,7 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
-            Toast.makeText(this, "Item adicionado com sucesso", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "Item adicionado com sucesso", Toast.LENGTH_SHORT).show()
 
             clear()
         }
@@ -315,11 +316,13 @@ class MainActivity : AppCompatActivity() {
             val date: String = SimpleDateFormat("dd.MM.yyyy").format(currentTime)
             println(date)
 
-            val fileName = "$date - Pedido BR3 nº$orderTyped.pdf"
+//            val fileName = "$date - Pedido BR3 nº$orderTyped.pdf"
+
+            val filename = System.currentTimeMillis().toString() + ".pdf"
 
             val pdfFile = File(
                 Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOCUMENTS),
-                fileName
+                filename
             )
 
             val outputStream: FileOutputStream = FileOutputStream(pdfFile)
@@ -403,9 +406,7 @@ class MainActivity : AppCompatActivity() {
                 adultNumbering.addCell(item.amountNumber45)
                 document.add(adultNumbering)
 
-
                 val (totalAmountAdult, resultAdult) = valueTotalAdult(item)
-
 
                 val finalAdultTable = PdfPTable(3)
                 finalAdultTable.widthPercentage = 100f
@@ -625,25 +626,20 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun requestWriteExternalPermission() {
-        val permission = android.Manifest.permission.WRITE_EXTERNAL_STORAGE
+        val permission = android.Manifest.permission.READ_EXTERNAL_STORAGE
         val isGranted = ContextCompat.checkSelfPermission(this, permission)
 
         if (isGranted != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, arrayOf(permission), 1)
+            ActivityCompat.requestPermissions(this, arrayOf(permission), 2)
 
-            if (ContextCompat.checkSelfPermission(
-                    this,
-                    android.Manifest.permission.WRITE_EXTERNAL_STORAGE
-                ) == PackageManager.PERMISSION_GRANTED
-            ) {
+            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+                Toast.makeText(this, "autorizado", Toast.LENGTH_LONG).show()
                 exportToPDF()
             }
-
         } else {
-//            Toast.makeText(this, "permission already granted", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "permission already granted", Toast.LENGTH_LONG).show()
             exportToPDF()
         }
-
     }
 
     private fun clear() {
